@@ -1,0 +1,5 @@
+content     kabotya    chrome/content/
+skin      kabotya  classic/1.0 chrome/skin/
+locale    kabotya  en-US       chrome/locale/en-US/
+resource  kabotya              modules/
+overlay chrome://browser/content/browser.xul chrome://kabotya/content/main.xul

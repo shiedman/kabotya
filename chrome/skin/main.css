@@ -1,0 +1,17 @@
+#y2proxy-tbb {
+  list-style-image: url("chrome://kabotya/skin/images/smile24.png");
+}
+toolbar[iconsize="small"] #y2proxy-tbb {
+  list-style-image: url("chrome://kabotya/skin/images/smile16.png");
+}
+
+#y2proxy-tbb[disabled="yes"] {
+  opacity: 0.8;
+}
+#y2proxy-tbb[disabled="yes"] .toolbarbutton-text {
+  text-decoration: line-through;
+}
+#y2proxy-tbb[disabled="yes"] .toolbarbutton-icon {
+  opacity: 0.5;
+}
+

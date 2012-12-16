@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://kabotya/skin/options.css" type="text/css"?>
+
+<prefwindow ondialogaccept="y2proxyOptionsOverlay.onSaveProxy();return true;" id="BrowserPreferences" title="y2proxy Preferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" width="600px" height="300px">
+
+<script src="y2proxyOptions.js" />
+
+<prefpane id="y2proxy-opt-pane" label="y2Proxy Settings" onpaneload="y2proxyOptionsOverlay.onOptionsLoad()" >
+
+  <preferences></preferences>
+
+<hbox flex="10">
+  <separator />
+  <tree id="proxyTree" align="stretch" flex="1" editable="true">
+  <treecols>
+     <treecol id="proxyEnabled" label="Enabled" type="checkbox" editable="true" />
+     <treecol id="proxyName" label="Proxy" primary="true" flex="1" editable="false"/>
+     <splitter class="tree-splitter" />
+     <treecol id="proxyHost" label="Host" flex="1" editable="false"/>
+     <splitter class="tree-splitter" />
+     <treecol id="proxyPort" label="Port" flex="1" editable="false"/>
+  </treecols>
+  <treechildren />
+  </tree>
+
+  <separator />
+  <vbox flex="0">
+    <button id="add-proxy-button" pack="start" label="Add Proxy" onclick="y2proxyOptionsOverlay.onAddProxy();" />
+    <button id="edit-proxy-button" pack="start" label="Edit Proxy" onclick="y2proxyOptionsOverlay.onEditProxy();" />
+    <button id="remove-proxy-button" pack="start" label="Remove Proxy" onclick="y2proxyOptionsOverlay.onRemoveProxy();"/>
+    <separator />
+
+    <button id="up-button" pack="start" onclick="y2proxyOptionsOverlay.onMoveProxyUp();" label="Move Up" />
+    <button id="down-button" pack="start" onclick="y2proxyOptionsOverlay.onMoveProxyDown();" label="Move Down" />
+  </vbox>
+</hbox>
+</prefpane>
+
+</prefwindow>

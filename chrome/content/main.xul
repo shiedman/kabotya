@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+-->
+<?xml-stylesheet type="text/css" href="chrome://kabotya/skin/main.css" ?>
+<overlay id="adstime-browser-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!--
+ <script src="main.js"/>
+  <menupopup id="menu_ToolsPopup">
+      <menuitem id="ads-menu" label="重置KF广告时间"
+              onclick="event.stopPropagation();"
+              oncommand="kabotyaExt.kf.resetAdsTime();event.stopPropagation();"
+              insertafter="javascriptConsole">
+      </menuitem>
+  </menupopup>
+-->
+
+ <script src="y2proxy.js"/>
+ <!-- using appspot as default proxy,so no need to remove google links for gfw
+ <script src="misc.js"/>
+-->
+
+  <commandset>
+    <!-- sync the 'disabled' attribute for toolbar button -->
+    <command id="proxy_toggle_enabled" disabled="yes" oncommand="kabotyaExt.proxyManager.toggleEnable();"/>
+  </commandset>
+
+  <toolbarpalette id='BrowserToolbarPalette'>
+      <toolbarbutton id='y2proxy-tbb' type='menu-button'
+              class='toolbarbutton-1 chromeclass-toolbar-additional'
+              command="proxy_toggle_enabled"
+              label='y2proxy' tooltiptext='y2proxy'
+              >
+          <menupopup id="y2proxy-menuitems1"
+                  onclick="event.stopPropagation();"
+                  oncommand="y2proxy_selectProxy(event.target);event.stopPropagation();"
+                  onpopupshowing="y2proxy.populateMenu();">
+              <menuitem id="y2proxy-checkmenu1" label="enable" type="checkbox" command="proxy_toggle_enabled"/>
+              <menuitem label="options"
+                      onclick="window.openDialog('chrome://kabotya/content/options.xul');"/>
+              <menuitem label="clearCookie" oncommand="y2proxy.clearCookie();" tooltiptext="清除当前网页的Cookie"/>
+              <menuseparator />
+          </menupopup>
+      </toolbarbutton>
+  </toolbarpalette>
+
+  <menupopup id="menu_ToolsPopup">
+      <menu id="y2proxy-menu1" label="y2proxy"
+              insertafter="prefSep,devToolsSeparator">
+          <menupopup id="y2proxy-menuitems2"
+                  onclick="event.stopPropagation();"
+                  oncommand="y2proxy_selectProxy(event.target);event.stopPropagation();"
+                  onpopupshowing="y2proxy.populateMenu();">
+              <menuitem id="y2proxy-checkmenu2" label="enable" type="checkbox" command="proxy_toggle_enabled"/>
+              <menuitem label="options"
+                      onclick="window.openDialog('chrome://kabotya/content/options.xul');"/>
+              <menuitem label="clearCookie" oncommand="y2proxy.clearCookie();" tooltiptext="清除当前网页的Cookie"/>
+
+              <menuseparator />
+          </menupopup>
+      </menu>
+  </menupopup>
+</overlay>
+

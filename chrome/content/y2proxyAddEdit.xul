@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://kabotya/skin/options.css" type="text/css"?>
+
+<dialog buttons="accept" id="add-edit-proxy-dialog" ondialogaccept="return y2proxyOptAdd.onDialogOK();"
+  onload="y2proxyOptAdd.onDialogLoad();" title="Add / Edit Proxy" xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" persist="screenX screenY width height" width="550px" height="250px">
+
+<script src="y2proxyAddEdit.js" />
+
+<vbox flex="1">
+
+      <grid>
+      	    <columns>
+		<column/>
+		<column flex="1" />
+	    </columns>
+
+	    <rows>
+		<row align="center">
+		     <label value="Name:" flex="1" />
+		     <textbox id="proxy-name" flex="1" />
+		</row>
+
+		<row align="center">
+		     <label value="Host:" flex="1" />
+		     <textbox id="proxy-host" flex="1" />
+		</row>
+
+		<row align="center">
+		     <label value="Port:" flex="1" />
+		     <textbox id="proxy-port" flex="1" />
+		</row>
+	      </rows>
+     </grid>
+<separator />
+
+</vbox>
+</dialog>

@@ -123,25 +123,18 @@ ProxyManager.prototype.defaultProxy = function() {
 };
 ProxyManager.prototype.applyFilter = function(protocolService, uri, aProxy) {
     var rtn=aProxy;
-    if (this.enabled&&this.localProxy){
-        //var remotehost=this.localProxy.remoteProxy.getHost();
-        var remotehost=this.localProxy.remoteProxy;
-        if(remotehost.type=='dotcloud'){
+    if (this.enabled&&this.localProxy&&uri.path!='/__http0'){
+        if(this.localProxy.remoteProxy || this.localProxy.appid){
             rtn=this.localProxy.getProxyInfo();
-        }else if (remotehost.type=='appspot' && uri.scheme=='http'){
-            if(remotehost.shared){
-                for(var i =0;i<this.domains.length;i++)
-                    if(uri.host.indexOf(this.domains[i])>=0) {
-                        rtn=this.localProxy.getProxyInfo();break;
-                    }
-            }else{
-                rtn=this.localProxy.getProxyInfo();
-            }
+        }else if (uri.scheme=='http'){
+            for(var i =0;i<this.domains.length;i++)
+                if(uri.host.indexOf(this.domains[i])>=0) {
+                    rtn=this.localProxy.getProxyInfo();break;
+                }
 
         }
     }
-    //log('[%s]:%s%s',aProxy,uri.host,uri.path);
-    if(rtn)log('[%s]:%s://%s%s',remotehost,uri.scheme,uri.host,uri.path);
+    if(rtn)log('[%s]:%s://%s%s',rtn.host,uri.scheme,uri.host,uri.path);
     return rtn;
 };
 /**
@@ -159,7 +152,7 @@ ProxyManager.prototype.toggleFilter = function() {
 */
 ProxyManager.prototype.toggleProxy = function() {
     if (this.enabled) {
-        var proxy=this.currentProxy()||this.defaultProxy();
+        var proxy=this.currentProxy();//||this.defaultProxy();
         if (this.localProxy) { this.localProxy.shutdown();}//this.localProxy.remoteProxy=proxy;}
         this.localProxy = new LocalProxy(proxy);
         log('change to proxy :',this.localProxy);

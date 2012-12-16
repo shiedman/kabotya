@@ -14,7 +14,7 @@ if ("undefined" == typeof(kabotyaExt)) {
 function log(){
     //Cc["@mozilla.org/consoleservice;1"].getService(Ci.nsIConsoleService).logStringMessage(msg);
     //dump(arguments.callee.caller.name+': ');
-   /* 
+/*   
     var s=arguments[0]||"";
 	if (typeof s !="string"){
 		s+="";
@@ -27,7 +27,7 @@ function log(){
         }
     }
     dump(new Date().toLocaleTimeString()+"    "+s+"\r\n");
-   */ 
+*/    
 }
 kabotyaExt.log=log;
 var scriptloader = Cc["@mozilla.org/moz/jssubscript-loader;1"]

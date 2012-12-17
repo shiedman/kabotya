@@ -124,6 +124,10 @@ ProxyManager.prototype.defaultProxy = function() {
 ProxyManager.prototype.applyFilter = function(protocolService, uri, aProxy) {
     var rtn=aProxy;
     if (this.enabled&&this.localProxy&&uri.path!='/__http0'){
+        if(false&&this.localProxy.remoteProxy&&uri.scheme=='https'){
+            log('[dotcloud]:%s://%s%s',uri.scheme,uri.host,uri.path);
+            return this.localProxy.dotcloudInfo;
+        }
         if(this.localProxy.remoteProxy || this.localProxy.appid){
             rtn=this.localProxy.getProxyInfo();
         }else if (uri.scheme=='http'){
